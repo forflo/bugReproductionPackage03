@@ -36,7 +36,7 @@ build() {
 
    CXX='g++-7' CC='gcc-7' \
       CXXFLAGS='-Wall -Wno-unused-local-typedefs -Wno-attributes' \
-      ../orkarose/configure \
+      ../rose/configure \
       --enable-assertion-behavior=abort \
       --prefix="${_PREFIX}" \
       --with-CFLAGS=-fPIC \
