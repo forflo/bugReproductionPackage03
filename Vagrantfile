@@ -63,7 +63,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "archlinux/archlinux"
 
   config.vm.provider "virtualbox" do |v|
-    v.memory = 1024*8
+    v.memory = 1024*32
     v.cpus = 4
   end
 
