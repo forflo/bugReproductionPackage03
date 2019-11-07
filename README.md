@@ -33,6 +33,6 @@ in `makepkg.conf` to the double amount of cores you have on your system!
 
 ## Note
 
-If you experience trouble building this VM, I will keep an instance
-of it on my disk for about 60 days (starting from today, 7.Nov 2019).
-Just write me a mail and I can try sending it to you via SCP or sth.
+I'll keep an instance of this VM on my disk for about 60 days (starting from today, 7.Nov 2019).
+So in case you encounter any troubles building this VM,
+just write me a mail and I can try sending it to you via SCP or sth.
