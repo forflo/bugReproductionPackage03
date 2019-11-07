@@ -23,3 +23,9 @@ To reproduce run
 1. Then run `$ makepkg`
 
 Expected: `$ makepkg` fails with a compiler error described in [#48](https://github.com/rose-compiler/rose/issues/48)
+
+## Trick
+
+If you happen to have a very fast PC, consider changing
+[this line](https://github.com/forflo/bugReproductionPackage03/blob/f6902b22e8ba47fd457bbedce1991d24f52bf3e9/makepkg.conf#L44)
+in `makepkg.conf` to the double amount of cores you have on your system!
