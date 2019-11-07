@@ -30,3 +30,9 @@ Expected: `$ makepkg` fails with a compiler error described in [#48](https://git
 If you happen to have a very fast PC, consider changing
 [this line](https://github.com/forflo/bugReproductionPackage03/blob/f6902b22e8ba47fd457bbedce1991d24f52bf3e9/makepkg.conf#L44)
 in `makepkg.conf` to the double amount of cores you have on your system!
+
+## Note
+
+If you experience trouble building this VM, I will keep an instance
+of it on my disk for about 60 days (starting from today, 7.Nov 2019).
+Just write me a mail and I can try sending it to you via SCP or sth.
