@@ -20,7 +20,7 @@ To reproduce run
 
 1. `cd` into this directory
 1. Run `$ vagrant ssh`
-1. Change into directory `/vagrant/rose-github`
+1. Change into directory `~/rose-github`
 1. Then run `$ makepkg`
 
 Expected: `$ makepkg` fails with a compiler error described in [#48](https://github.com/rose-compiler/rose/issues/48)
