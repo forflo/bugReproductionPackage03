@@ -1,6 +1,6 @@
 # Maintainer: Florian Mayer <florian[dot]andrefranc[dot]mayer[at]fau[dot]de>
 # The makedependency "boost-65-compat" is available
-# at https://faui22m.cs.fau.de/orka/PKGBUILDs/boost-65-compat
+# at https://faui22m.cs.fau.de/orka/PKGBUILDs/boost-67-compat
 # gcc7 is available through the AUR
 
 pkgname=('rose')
@@ -11,19 +11,16 @@ url='http://rosecompiler.org/'
 arch=('x86_64')
 license=('BSD')
 makedepends=(
-        'boost-65-compat' 'wget' 'libtool'
+        'boost-67-compat' 'wget' 'libtool'
         'flex' 'bison' 'unzip'
         'perl' 'texlive-bin' 'gdb'
         'gcc7' 'autoconf'
         'automake' 'graphviz')
-depends=('ghostscript' 'jdk8-openjdk' 'libxml2' 'perl' 'boost-65-compat')
-
+depends=('ghostscript' 'jdk8-openjdk' 'libxml2' 'perl' 'boost-67-compat')
 source=('git+https://github.com/rose-compiler/rose#branch=develop')
 sha256sums=('SKIP')
 OPTIONS=(!strip)
-
 _PREFIX=/opt/rose
-
 
 build() {
    cd "${srcdir}"/rose
@@ -42,8 +39,8 @@ build() {
       --with-CFLAGS=-fPIC \
       --with-C_WARNINGS='-Wall -Wno-unused-local-typedefs -Wno-attributes' \
       --with-CXX_WARNINGS='-Wall -Wno-unused-local-typedefs -Wno-attributes' \
-      --with-boost=/opt/boost/1.65.0/ \
-      --with-boost-libdir=/opt/boost/1.65.0/lib/ \
+      --with-boost=/opt/boost/1.67.0/ \
+      --with-boost-libdir=/opt/boost/1.67.0/lib/ \
       --enable-languages=c,c++ \
       --without-sqlite3 --without-libreadline --without-magic \
       --without-wt --without-yices --without-pch \

@@ -46,12 +46,19 @@ $buildRoseAndDeps = <<-SCRIPT
   # THESE ARE ROSES additional dependencies
   sudo pacman -Sy --noconfirm flex bison unzip gdb autoconf automake graphviz
   sudo pacman -Sy --noconfirm jdk8-openjdk
-  pacaur -Sy --noconfirm gcc7
+  sudo pacman -Sy --noconfirm doxygen subversion
 
-  cd /vagrant/boost-65-compat
+  pushd /vagrant/gcc7
+  makepkg -f --noconfirm
+  sudo pacman --noconfirm -U      \
+    gcc7-7.4.1*x86_64.tar.xz      \
+    gcc7-{fortran,libs}-*.tar.xz
+  popd
+
+  pushd /vagrant/boost-67-compat
   makepkg -f --noconfirm
   sudo pacman --noconfirm -U *.tar.xz
-  cd
+  popd
 
   # cd rose-github
   # makepkg --noconfirm
@@ -68,17 +75,15 @@ Vagrant.configure("2") do |config|
   end
 
   # enable -j4 builds
-  config.vm.provision "file", source: "makepkg.conf", destination: "~/makepkg.conf"
-  config.vm.provision "file", source: "rose-github", destination: "~/rose-github"
-  config.vm.provision "shell", inline: "cp makepkg.conf /etc/makepkg.conf"
+  #config.vm.provision "file", source: "makepkg.conf", destination: "~/makepkg.conf"
+  #config.vm.provision "shell", inline: "cp makepkg.conf /etc/makepkg.conf"
 
-  config.vm.provision "shell", inline: $packages
-  config.vm.provision "shell", inline: $packagesDevel
-  config.vm.provision "shell", inline: $installAuracle, privileged: false
-  config.vm.provision "shell", inline: $installPacaur, privileged: false
+  #config.vm.provision "shell", inline: $packages
+  #config.vm.provision "shell", inline: $packagesDevel
+  #config.vm.provision "shell", inline: $installAuracle, privileged: false
+  #config.vm.provision "shell", inline: $installPacaur, privileged: false
 
   config.vm.provision "shell", inline: $buildRoseAndDeps, privileged: false
 
   config.vm.provision "shell", inline: $cleanPac
-
 end
