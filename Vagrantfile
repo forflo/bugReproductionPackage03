@@ -60,10 +60,13 @@ $buildRoseAndDeps = <<-SCRIPT
   sudo pacman --noconfirm -U *.tar.xz
   popd
 
-  # cd rose-github
-  # makepkg --noconfirm
-  # #sudo pacman --noconfirm
+  # rose does require a strange permission that
+  # we don't have in /vagrant by default...
+  pushd rose-github
+  makepkg --noconfirm
+   #sudo pacman --noconfirm
   # cd
+  popd
 SCRIPT
 
 Vagrant.configure("2") do |config|
@@ -75,13 +78,14 @@ Vagrant.configure("2") do |config|
   end
 
   # enable -j4 builds
-  #config.vm.provision "file", source: "makepkg.conf", destination: "~/makepkg.conf"
-  #config.vm.provision "shell", inline: "cp makepkg.conf /etc/makepkg.conf"
+  config.vm.provision "file", source: "makepkg.conf", destination: "~/makepkg.conf"
+  config.vm.provision "file", source: "rose-github", destination: "~/rose-github"
+  config.vm.provision "shell", inline: "cp makepkg.conf /etc/makepkg.conf"
 
-  #config.vm.provision "shell", inline: $packages
-  #config.vm.provision "shell", inline: $packagesDevel
-  #config.vm.provision "shell", inline: $installAuracle, privileged: false
-  #config.vm.provision "shell", inline: $installPacaur, privileged: false
+  config.vm.provision "shell", inline: $packages
+  config.vm.provision "shell", inline: $packagesDevel
+  config.vm.provision "shell", inline: $installAuracle, privileged: false
+  config.vm.provision "shell", inline: $installPacaur, privileged: false
 
   config.vm.provision "shell", inline: $buildRoseAndDeps, privileged: false
 
