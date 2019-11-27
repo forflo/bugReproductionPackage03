@@ -48,14 +48,12 @@ $buildRoseAndDeps = <<-SCRIPT
   sudo pacman -Sy --noconfirm jdk8-openjdk
   sudo pacman -Sy --noconfirm doxygen subversion
 
-  pushd /vagrant/gcc7
+  pushd gcc7
   makepkg -f --noconfirm
-  sudo pacman --noconfirm -U      \
-    gcc7-7.4.1*x86_64.tar.xz      \
-    gcc7-{fortran,libs}-*.tar.xz
+  sudo pacman --noconfirm -U *.pkg.tar.xz
   popd
 
-  pushd /vagrant/boost-67-compat
+  pushd boost-67-compat
   makepkg -f --noconfirm
   sudo pacman --noconfirm -U *.tar.xz
   popd
@@ -80,6 +78,8 @@ Vagrant.configure("2") do |config|
   # enable -j4 builds
   config.vm.provision "file", source: "makepkg.conf", destination: "~/makepkg.conf"
   config.vm.provision "file", source: "rose-github", destination: "~/rose-github"
+  config.vm.provision "file", source: "gcc7", destination: "~/gcc7"
+  config.vm.provision "file", source: "boost-67-compat", destination: "~/boost-67-compat"
   config.vm.provision "shell", inline: "cp makepkg.conf /etc/makepkg.conf"
 
   config.vm.provision "shell", inline: $packages
